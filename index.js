@@ -30,7 +30,7 @@ function onNumbersChange() {
     let r = greater % lesser;
 
     output += `
-      <div>${greater} = ${lesser} * q + r</div>
+      <div style="margin-bottom: -16px;">${greater} = ${lesser} * q + r</div>
       <p>${greater} = ${lesser} * ${q} + ${r}</p>
     `;
 

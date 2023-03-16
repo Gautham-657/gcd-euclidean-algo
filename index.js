@@ -7,6 +7,7 @@ function onNumbersChange() {
   if (num1 === 0 || num2 === 0) {
     return 0;
   }
+  let LCM = 0;
 
   let greater = num1,
     lesser = num2;
@@ -19,8 +20,8 @@ function onNumbersChange() {
   let output = "";
 
   output += `
-    <p>Greater: ${greater} | Lesser: ${lesser}</p>
-  `;
+      <p>Greater: ${greater} | Lesser: ${lesser}</p>
+    `;
 
   let found = false;
   let lastR = null;
@@ -30,15 +31,38 @@ function onNumbersChange() {
     let r = greater % lesser;
 
     output += `
-      <div style="margin-bottom: -16px;">${greater} = ${lesser} * q + r</div>
-      <p>${greater} = ${lesser} * ${q} + ${r}</p>
-    `;
+        <div style="margin-bottom: -16px;">${greater} = ${lesser} * q + r</div>
+        <p>${greater} = ${lesser} * ${q} + ${r}</p>
+      `;
 
     if (r === 0) {
       found = true;
-      output += `
-        <h2>GCD: ${lastR}</h2>
-      `;
+
+
+      if (!lastR) {
+        let hcf = 0
+        let lcm = 0
+
+        if (lesser === 0) {
+          hcf = greater
+        } else {
+          hcf = lesser
+        }
+
+        lcm = (num1 * num2) / hcf
+
+        output += `
+            <h2>GCD: ${hcf}</h2>
+            <h2>LCM: ${lcm}</h2>
+          `;
+      } else {
+        const lcm = (num1 * num2) / lastR
+
+        output += `
+              <h2>GCD: ${lastR}</h2>
+              <h2>LCM: ${lcm}</h2>
+            `;
+      }
     }
 
     lastR = r;
@@ -46,5 +70,8 @@ function onNumbersChange() {
     lesser = r;
   }
 
+
+
   document.getElementById("output").innerHTML = output;
+
 }
